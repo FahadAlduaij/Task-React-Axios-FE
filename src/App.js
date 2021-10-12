@@ -56,22 +56,33 @@ function App() {
 				update
 			);
 
-			setRooms([...rooms, response.data]);
+			setRooms([response.data]);
 		} catch (error) {
 			window.alert(error);
 		}
 	};
 
+
+	const sendMessages = async (roomID, message) => {
+		try {
+			const response = await axios.post(`https://coded-task-axios-be.herokuapp.com/rooms/msg/${roomID}`, message)
+			setRooms([response.data]);
+		} catch (error) {
+			window.alert(error);
+		}
+		
+	}
+
 	useEffect(() => {
 		fetchResponse();
-	}, [rooms]);
+	}, []);
 
 	return (
 		<div className="__main">
 			<div className="main__chatbody">
 				<Switch>
 					<Route path="/room/:roomSlug">
-						<ChatRoom rooms={rooms} />
+						<ChatRoom rooms={rooms} sendMessages={sendMessages}/>
 					</Route>
 					<Route exact path="/">
 						<center>
