@@ -50,14 +50,10 @@ function App() {
 	const updateRoom = async (roomId, update) => {
 		// to do : call BE to delete a room
 		try {
-			let test = {
-				title: update.title,
-				image: update.image,
-				description: update.description,
-			};
+			
 			const response = await axios.put(
 				`https://coded-task-axios-be.herokuapp.com/rooms/${roomId}`,
-				test
+				update
 			);
 
 			setRooms([...rooms, response.data]);
