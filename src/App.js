@@ -47,12 +47,17 @@ function App() {
 		}
 	};
 
-
 	const updateRoom = async (roomId, update) => {
 		// to do : call BE to delete a room
 		try {
+			let test = {
+				title: update.title,
+				image: update.image,
+				description: update.description,
+			};
 			const response = await axios.put(
-				`https://coded-task-axios-be.herokuapp.com/rooms/${roomId}`,update
+				`https://coded-task-axios-be.herokuapp.com/rooms/${roomId}`,
+				test
 			);
 
 			setRooms([...rooms, response.data]);
@@ -63,7 +68,7 @@ function App() {
 
 	useEffect(() => {
 		fetchResponse();
-	}, []);
+	}, [rooms]);
 
 	return (
 		<div className="__main">
@@ -78,7 +83,7 @@ function App() {
 								rooms={rooms}
 								createRoom={createRoom}
 								deleteRoom={deleteRoom}
-                updateRoom={updateRoom}
+								updateRoom={updateRoom}
 							/>
 						</center>
 					</Route>
