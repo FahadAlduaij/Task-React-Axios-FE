@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import MessageItem from './MessageItem';
+import ScrollableFeed from 'react-scrollable-feed'
 
 function ChatRoom(props) {
   const roomSlug = useParams().roomSlug;
+  
   const room = props.rooms.find((room) => room.slug === roomSlug);
+  
   const messagesList = room.messages.map((msg) => {
     return <MessageItem msg={msg.msg} />;
   });
+  
   const [msg, setMsg] = useState({ msg: '' });
+  
   const handleChange = (event) => {
     setMsg({ ...msg, [event.target.name]: event.target.value });
   };
@@ -16,7 +21,7 @@ function ChatRoom(props) {
   const handleSubmit = (event) => {
     event.preventDefault()
     props.sendMessages(room.id, msg)
-
+    setMsg({msg:''})
   };
 
   return (
@@ -34,7 +39,9 @@ function ChatRoom(props) {
         </div>
       </div>
       <div className="content__body">
-        <div className="chat__items">{messagesList}</div>
+        <ScrollableFeed>
+          <div className="chat__items">{messagesList}</div>
+        </ScrollableFeed>
       </div>
       <div className="content__footer">
         <div className="sendNewMessage">
@@ -43,6 +50,7 @@ function ChatRoom(props) {
           </button>
           <input
             type="text"
+            value={msg.msg}
             name="msg"
             onChange={handleChange}
             placeholder="Type a message here"

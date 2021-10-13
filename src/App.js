@@ -21,13 +21,11 @@ function App() {
 	};
 
 	const createRoom = async (newRoom) => {
-		// to do : call BE to create a room
 		try {
 			const response = await axios.post(
 				"https://coded-task-axios-be.herokuapp.com/rooms",
 				newRoom
 			);
-
 			setRooms([...rooms, response.data]);
 		} catch (error) {
 			window.alert(error);
@@ -35,7 +33,6 @@ function App() {
 	};
 
 	const deleteRoom = async (roomId) => {
-		// to do : call BE to delete a room
 		try {
 			const response = await axios.delete(
 				`https://coded-task-axios-be.herokuapp.com/rooms/${roomId}`
@@ -48,15 +45,12 @@ function App() {
 	};
 
 	const updateRoom = async (roomId, update) => {
-		// to do : call BE to delete a room
 		try {
-			
 			const response = await axios.put(
 				`https://coded-task-axios-be.herokuapp.com/rooms/${roomId}`,
 				update
 			);
-
-			setRooms([response.data]);
+			fetchResponse();
 		} catch (error) {
 			window.alert(error);
 		}
@@ -67,6 +61,7 @@ function App() {
 		try {
 			const response = await axios.post(`https://coded-task-axios-be.herokuapp.com/rooms/msg/${roomID}`, message);
 			fetchResponse();
+			console.log(response)
 		} catch (error) {
 			window.alert(error);
 		}
