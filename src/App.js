@@ -65,8 +65,8 @@ function App() {
 
 	const sendMessages = async (roomID, message) => {
 		try {
-			const response = await axios.post(`https://coded-task-axios-be.herokuapp.com/rooms/msg/${roomID}`, message)
-			setRooms([response.data]);
+			const response = await axios.post(`https://coded-task-axios-be.herokuapp.com/rooms/msg/${roomID}`, message);
+			fetchResponse();
 		} catch (error) {
 			window.alert(error);
 		}
