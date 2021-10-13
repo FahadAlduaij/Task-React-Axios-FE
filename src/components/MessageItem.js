@@ -2,9 +2,7 @@ import React from 'react';
 
 export default function MessageItem(props) {
   return (
-    // IMPORTANT NOTE FOR LINE 8
-    // TO SHOW THE MSG ON THE LEFT USE THIS CLASSNAME "chat__item other"
-    // TO SHOW THE MSG ON THE RIGHT USE THIS CLASSNAME "chat__item"
+
     <div style={{ animationDelay: `0.8s` }} className={`chat__item`}>
       <div className="chat__item__content">
         <div className="chat__msg">{props.msg}</div>

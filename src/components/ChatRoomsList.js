@@ -14,6 +14,7 @@ function ChatRoomsList(props) {
 			<ChatRoomitem room={room} key={room.id} deleteRoom={props.deleteRoom} updateRoom={props.updateRoom} />
 		);
 	});
+	
 	return (
 		<div className="main__chatlist">
 			<button className="btn">

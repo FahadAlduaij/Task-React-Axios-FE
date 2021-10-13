@@ -5,6 +5,7 @@ import UpdateRoomModal from "./UpdateRoomModal";
 
 export default function ChatRoomitem(props) {
 	const room = props.room;
+
 	const [isOpen, setIsOpen] = useState(false);
 
 	const closeModal = () => setIsOpen(false);
@@ -13,9 +14,8 @@ export default function ChatRoomitem(props) {
 
 	const handleDelete = () => {
 		props.deleteRoom(room.id);
-
-		// call a function from app to delete a room (pass room.id as a parameter)
 	};
+
 	return (
 		<div className="group">
 			<Link to={`/room/${room.slug}`}>
@@ -38,7 +38,7 @@ export default function ChatRoomitem(props) {
 			<Button className="delete" onClick={openModal}>
 				Update
 			</Button>
-			<UpdateRoomModal isOpen={isOpen} closeModal={closeModal} room={room} 	updateRoom={props.updateRoom}/>
+			<UpdateRoomModal isOpen={isOpen} closeModal={closeModal} room={room} updateRoom={props.updateRoom}/>
 		</div>
 	);
 }

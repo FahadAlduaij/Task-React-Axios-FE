@@ -1,6 +1,5 @@
 import { Modal, Button, InputGroup, Form } from "react-bootstrap";
 import React, { useState } from "react";
-import { set } from "mobx";
 
 export default function CreateRoomModal(props) {
 	const [room, setRoom] = useState({
@@ -11,16 +10,13 @@ export default function CreateRoomModal(props) {
 	});
 
 	const handleChange = (event) => {
-		// to do : setRoom state based in input
 		setRoom({ ...room, [event.target.name]: event.target.value });
 	};
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		props.createRoom(room);
-	
-
-		props.closeModal(); // this is to close the modal that is shown
+		props.closeModal();
 	};
 
 	return (
