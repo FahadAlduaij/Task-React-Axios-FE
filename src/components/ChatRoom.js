@@ -5,7 +5,7 @@ import ScrollableFeed from "react-scrollable-feed";
 import roomStore from "../roomStore";
 import { observer } from "mobx-react-lite";
 
-function ChatRoom(props) {
+function ChatRoom() {
 	const roomSlug = useParams().roomSlug;
 
 	const room = roomStore.tasks.find((room) => room.slug === roomSlug);

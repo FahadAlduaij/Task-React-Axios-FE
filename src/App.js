@@ -4,7 +4,7 @@ import "./App.css";
 import ChatRoom from "./components/ChatRoom";
 import ChatRoomsList from "./components/ChatRoomsList";
 import { Route, Switch } from "react-router";
-import roomStore from "./roomStore";
+
 
 function App() {
 	return (

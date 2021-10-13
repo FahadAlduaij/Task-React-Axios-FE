@@ -4,7 +4,7 @@ import CreateRoomModal from "./CreateRoomModal";
 import roomStore from "../roomStore";
 import { observer } from "mobx-react-lite";
 
-function ChatRoomsList(props) {
+function ChatRoomsList() {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const closeModal = () => setIsOpen(false);
