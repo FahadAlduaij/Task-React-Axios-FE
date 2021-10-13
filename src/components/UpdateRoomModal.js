@@ -1,5 +1,6 @@
 import { Modal, Button, InputGroup, Form } from "react-bootstrap";
 import React, { useState } from "react";
+import roomStore from "../roomStore";
 
 export default function UpdateRoomModal(props) {
 	const [room, setRoom] = useState({
@@ -8,14 +9,14 @@ export default function UpdateRoomModal(props) {
 		image: props.room.image,
 		description: props.room.description,
 	});
-  
+
 	const handleChange = (event) => {
 		setRoom({ ...room, [event.target.name]: event.target.value });
 	};
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		props.updateRoom(room.id, room);
+		roomStore.updateRoom(room);
 		props.closeModal();
 	};
 

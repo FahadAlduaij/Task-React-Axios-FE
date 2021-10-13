@@ -4,88 +4,19 @@ import "./App.css";
 import ChatRoom from "./components/ChatRoom";
 import ChatRoomsList from "./components/ChatRoomsList";
 import { Route, Switch } from "react-router";
-import axios from "axios";
+import roomStore from "./roomStore";
 
 function App() {
-	const [rooms, setRooms] = useState([]);
-
-	const fetchResponse = async () => {
-		try {
-			const response = await axios.get(
-				"https://coded-task-axios-be.herokuapp.com/rooms"
-			);
-			setRooms(response.data);
-		} catch (error) {
-			window.alert(error);
-		}
-	};
-
-	const createRoom = async (newRoom) => {
-		try {
-			const response = await axios.post(
-				"https://coded-task-axios-be.herokuapp.com/rooms",
-				newRoom
-			);
-			setRooms([...rooms, response.data]);
-		} catch (error) {
-			window.alert(error);
-		}
-	};
-
-	const deleteRoom = async (roomId) => {
-		try {
-			const response = await axios.delete(
-				`https://coded-task-axios-be.herokuapp.com/rooms/${roomId}`
-			);
-			let deleteRoom = rooms.filter((room) => room.id !== roomId);
-			setRooms(deleteRoom);
-		} catch (error) {
-			window.alert(error);
-		}
-	};
-
-	const updateRoom = async (roomId, update) => {
-		try {
-			const response = await axios.put(
-				`https://coded-task-axios-be.herokuapp.com/rooms/${roomId}`,
-				update
-			);
-			fetchResponse();
-		} catch (error) {
-			window.alert(error);
-		}
-	};
-
-
-	const sendMessages = async (roomID, message) => {
-		try {
-			const response = await axios.post(`https://coded-task-axios-be.herokuapp.com/rooms/msg/${roomID}`, message);
-			fetchResponse();
-		} catch (error) {
-			window.alert(error);
-		}
-		
-	}
-
-	useEffect(() => {
-		fetchResponse();
-	}, []);
-
 	return (
 		<div className="__main">
 			<div className="main__chatbody">
 				<Switch>
 					<Route path="/room/:roomSlug">
-						<ChatRoom rooms={rooms} sendMessages={sendMessages}/>
+						<ChatRoom />
 					</Route>
 					<Route exact path="/">
 						<center>
-							<ChatRoomsList
-								rooms={rooms}
-								createRoom={createRoom}
-								deleteRoom={deleteRoom}
-								updateRoom={updateRoom}
-							/>
+							<ChatRoomsList />
 						</center>
 					</Route>
 				</Switch>
