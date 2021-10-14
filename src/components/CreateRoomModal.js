@@ -16,7 +16,7 @@ export default function CreateRoomModal(props) {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		roomStore.createRoom(room)
+		roomStore.createRoom(room);
 		props.closeModal();
 	};
 

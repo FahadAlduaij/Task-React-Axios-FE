@@ -33,7 +33,6 @@ class RoomStore {
 				newRoom
 			);
 			this.tasks = [...this.tasks, response.data];
-			// setRooms([...rooms, response.data]);
 		} catch (error) {
 			window.alert(error);
 		}

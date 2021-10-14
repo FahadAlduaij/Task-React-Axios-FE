@@ -5,7 +5,6 @@ import ChatRoom from "./components/ChatRoom";
 import ChatRoomsList from "./components/ChatRoomsList";
 import { Route, Switch } from "react-router";
 
-
 function App() {
 	return (
 		<div className="__main">
