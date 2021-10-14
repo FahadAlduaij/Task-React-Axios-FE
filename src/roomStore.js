@@ -32,7 +32,7 @@ class RoomStore {
 				"https://coded-task-axios-be.herokuapp.com/rooms",
 				newRoom
 			);
-			this.tasks = [...this.tasks, response.data];
+			this.tasks.push(response.data);
 		} catch (error) {
 			window.alert(error);
 		}
@@ -56,10 +56,9 @@ class RoomStore {
 				`https://coded-task-axios-be.herokuapp.com/rooms/${update.id}`,
 				update
 			);
-			let tempRooms = this.tasks.map((room) =>
+			this.tasks = this.tasks.map((room) =>
 				room.id === update.id ? response.data : room
 			);
-			this.tasks = tempRooms;
 		} catch (error) {
 			window.alert(error);
 		}
@@ -71,12 +70,9 @@ class RoomStore {
 				`https://coded-task-axios-be.herokuapp.com/rooms/msg/${roomID}`,
 				message
 			);
-			let tempmsg = this.tasks.map((room) =>
-				room.id === roomID
-					? { ...room, messages: [...room.messages, response.data] }
-					: room
-			);
-			this.tasks = tempmsg;
+
+			const room = this.tasks.find((room) => room.id === roomID);
+			room.messages.push(response.data);
 		} catch (error) {
 			window.alert(error);
 		}
