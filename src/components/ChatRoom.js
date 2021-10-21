@@ -10,9 +10,9 @@ function ChatRoom() {
 
 	const room = roomStore.tasks.find((room) => room.slug === roomSlug);
 
-	const messagesList = room.messages.map((msg) => {
-		return <MessageItem msg={msg.msg} />;
-	});
+	const messagesList = room.messages.map((msg) => (
+		<MessageItem msg={msg.msg} />
+	));
 
 	const [msg, setMsg] = useState({ msg: "" });
 
